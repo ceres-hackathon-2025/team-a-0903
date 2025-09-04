@@ -61,70 +61,7 @@ class HospitalController extends Controller
     }
 
 
-     
-     //テスト
-     /*
-    public function test(Request $request) // Requestオブジェクトを受け取る
-    {
-        // 1. ユーザーが入力したキーワードを取得
-        $keyword = "病院";
-
-        // 2. 検索クエリを準備
-        $query = Hospital::query();
-
-        // 3. もしキーワードが入力されていれば、検索条件を追加
-        if (!empty($keyword)) {
-            $query->where(function ($q) use ($keyword) {
-                $q->where('name', 'LIKE', "%{$keyword}%")
-                  ->orWhere('address', 'LIKE', "%{$keyword}%")
-                  ->orWhere('post_code', 'LIKE', "%{$keyword}%");
-            });
-        }
-
-        // 2. 動物種での絞り込み
-        $selected_species_ids = $request->input('species_ids', []); // 配列として受け取る
-        if (!empty($selected_species_ids)) {
-            // whereHas: 'species'というリレーションが存在し、
-            // そのリレーション先のspeciesテーブルのidが選択されたIDのいずれかに合致する病院を検索
-            $query->whereHas('species', function ($q) use ($selected_species_ids) {
-                $q->whereIn('species.id', $selected_species_ids);
-            });
-        }
-
-        // 4. データを取得し、ビューに渡す
-        $hospitals = $query->latest()->get();
-        $animals = $this->getAnimals();
-        $selectedAnimals = [];
-
-        return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
-    }
-*/
-
-
-    /*
-    public function search(Request $request): View
-    {
-        //dd($request);
-        $keyword = $request->query('keyword', '');
-        $selectedAnimals = $request->query('animal', []);
-
-        Hospital::select()->where()->orderBy;
-        $animals = $this->getAnimals();
-
-        if ($keyword) {
-            $hospitals = $hospitals->filter(fn($h) => str_contains($h->name, $keyword) || str_contains($h->address, $keyword))->values();
-        }
-
-        if (!empty($selectedAnimals)) {
-            $hospitals = $hospitals->filter(function($h) use ($selectedAnimals) {
-                return count(array_intersect($selectedAnimals, $h->supported_animals)) > 0;
-            })->values();
-        }
-
-        return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
-    }
-*/
-    /**
+     /**
      * 動物病院の詳細を表示します。
      */
     public function detail(int $id): View
@@ -172,13 +109,6 @@ class HospitalController extends Controller
                 'supported_animals' => ['犬', '猫', '鳥', 'その他'],
                 'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+C',
             ],
-        ]);
-    }
-
-    private function getAnimals(): Collection
-    {
-        return collect([
-            '犬', '猫', 'うさぎ', 'ハムスター', '鳥類', '爬虫類', 'その他'
         ]);
     }
 }
