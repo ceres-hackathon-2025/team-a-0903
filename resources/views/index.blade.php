@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="mb-4">
-        <h1 class="display-6 fw-bold">お近くの動物病院を探す</h1>
+        <h1 class="fw-bold h3">お近くの動物病院を探す</h1>
         <p class="text-muted">あなたの大切なペットのための病院を見つけましょう。</p>
     </div>
 
@@ -17,7 +17,7 @@
                     <input type="text" id="keyword" name="keyword" class="form-control" placeholder="病院名、地名など">
                 </div>
                 <div class="col-md-4 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary w-100">
+                    <button type="submit" class="btn btn-orange w-100">
                         <i class="fas fa-search me-1"></i> 検索する
                     </button>
                 </div>
