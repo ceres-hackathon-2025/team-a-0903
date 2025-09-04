@@ -3,4 +3,5 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HospitalController; 
 
-Route::get('/', [HospitalController::class, 'index']);
+Route::get('/', [HospitalController::class, 'index'])->name('index');
+Route::get('/hospitals/{id}', [HospitalController::class, 'detail'])->name('detail');
