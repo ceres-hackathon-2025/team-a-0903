@@ -44,6 +44,6 @@ class HospitalController extends Controller
             ],
         ]);
 
-        return view('hospitals.index', compact('hospitals'));
+        return view('index', compact('hospitals'));
     }
 }
