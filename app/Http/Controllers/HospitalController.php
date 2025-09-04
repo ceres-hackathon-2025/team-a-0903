@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
@@ -14,7 +15,7 @@ class HospitalController extends Controller
     public function index(): View
     {
         $selectedAnimals = [];
-        $hospitals = $this->getHospitals();
+        $hospitals = Hospital::all();
         $animals = $this->getAnimals();
 
         return view('index', compact('hospitals', 'animals', 'selectedAnimals'));

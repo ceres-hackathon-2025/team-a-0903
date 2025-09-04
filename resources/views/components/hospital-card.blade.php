@@ -20,11 +20,9 @@
             </li>
         </ul>
 
-        <div>
-            @foreach($hospital->supported_animals as $animal)
-                <span class="badge bg-orange me-1">{{ $animal }}</span>
-            @endforeach
-        </div>
+        <!--  
+
+        -->
 
     </div>
     <div class="card-footer bg-white border-top-0 rounded-bottom-4">
