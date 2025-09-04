@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Hospital;
+use App\Models\HospitalSpecies;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,8 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([HospitalSeeder::class, SpeciesSeeder::class]);
-
+        $this->call([HospitalSeeder::class, SpeciesSeeder::class, HospitalSpeciesSeeder::class, BusinessHourSeeder::class]);
         /*元々あったもの
         // User::factory(10)->create();
 
