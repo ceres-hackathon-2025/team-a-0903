@@ -25,7 +25,7 @@ class HospitalController extends Controller
 
     public function search(Request $request): View
     {
-        dd($request);
+        //dd($request);
         $keyword = $request->query('keyword', '');
         $selectedAnimals = $request->query('animal', []);
 
