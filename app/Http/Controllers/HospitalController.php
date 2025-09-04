@@ -11,9 +11,23 @@ class HospitalController extends Controller
     /**
      * 動物病院一覧を表示します。
      */
-    public function index(): View
+    public function index(Request $request): View
     {
+        $keyword = $request->query('keyword', '');
+        $selectedAnimals = $request->query('animal', []);
+
         $hospitals = $this->getHospitals();
+
+        if ($keyword) {
+            $hospitals = $hospitals->filter(fn($h) => str_contains($h->name, $keyword) || str_contains($h->address, $keyword))->values();
+        }
+
+        if (!empty($selectedAnimals)) {
+            $hospitals = $hospitals->filter(function($h) use ($selectedAnimals) {
+                return count(array_intersect($selectedAnimals, $h->supported_animals)) > 0;
+            })->values();
+        }
+
         return view('index', compact('hospitals'));
     }
 
@@ -62,7 +76,7 @@ class HospitalController extends Controller
                 'address' => '東京都目黒区鷹番7-8-9',
                 'phone' => '03-3456-7890',
                 'consultation_hours' => '09:30-12:30, 16:30-19:30',
-                'supported_animals' => ['犬', '猫', '鳥', 'エキゾチック'],
+                'supported_animals' => ['犬', '猫', '鳥', 'その他'],
                 'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+C',
             ],
         ]);
