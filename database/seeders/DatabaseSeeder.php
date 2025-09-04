@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(HospitalSeeder::class);
+        $this->call([HospitalSeeder::class, SpeciesSeeder::class]);
+
         /*元々あったもの
         // User::factory(10)->create();
 
