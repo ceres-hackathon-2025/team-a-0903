@@ -27,9 +27,6 @@
             <div class="mt-3">
                 <label class="form-label d-block">対応している動物</label>
                 <div class="d-flex flex-wrap gap-2">
-                    @php
-                        $selectedAnimals = request('animal', []);
-                    @endphp
                     @foreach([
                         'dog' => '犬', 
                         'cat' => '猫', 

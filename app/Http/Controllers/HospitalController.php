@@ -28,7 +28,7 @@ class HospitalController extends Controller
             })->values();
         }
 
-        return view('index', compact('hospitals'));
+        return view('index', compact('hospitals', 'selectedAnimals'));
     }
 
     /**
