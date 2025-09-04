@@ -82,4 +82,77 @@
         {{ $hospitals->links() }}
     </div> 
     --}}
+    <a id="back-to-top-btn" class="back-to-top-btn" href="#" role="button">PAGE TOP</a>
+
 @endsection
+
+@push('styles')
+<style>
+    .back-to-top-btn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        
+        border: none;
+        outline: none;
+        background-color: #0d6efd;
+        color: white;
+        cursor: pointer;
+        
+        /* 変更点：横長のボタンに */
+        width: 100px;
+        height: 45px;
+        border-radius: 25px; /* カプセル形状にする */
+        
+        /* 変更点：文字のスタイル */
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        white-space: nowrap; /* 文字が改行されないようにする */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        opacity: 0.8;
+        transition: opacity 0.3s;
+    }
+
+    .back-to-top-btn:hover {
+        opacity: 1;
+    }
+</style>
+@endpush
+
+@push('scripts')
+<script>
+    // 3. ボタンを制御するJavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        // ボタンの要素を取得
+        let topBtn = document.getElementById('back-to-top-btn');
+
+        // スクロール時の処理
+        window.onscroll = function() {
+            // 画面上部から200px以上スクロールされたらボタンを表示
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                topBtn.style.display = "flex";
+            } else {
+                topBtn.style.display = "none";
+            }
+        };
+
+        // ボタンクリック時の処理
+        topBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // aタグのデフォルトの動作（#へのジャンプ）をキャンセル
+            
+            // ページトップへスムーズにスクロール
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+@endpush
