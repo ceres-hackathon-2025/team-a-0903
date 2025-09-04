@@ -10,7 +10,7 @@
 
     {{-- 検索フォーム --}}
     <div class="card card-body mb-4">
-        <form action="{{ route('index')}}" method="GET">
+        <form action="{{ route('search')}}" method="GET">
             <div class="row g-3">
                 <div class="col-md-8">
                     <label for="keyword" class="form-label">キーワード</label>
@@ -27,18 +27,10 @@
             <div class="mt-3">
                 <label class="form-label d-block">対応している動物</label>
                 <div class="d-flex flex-wrap gap-2">
-                    @foreach([
-                        'dog' => '犬', 
-                        'cat' => '猫', 
-                        'rabbit' => 'ウサギ', 
-                        'hamster' => 'ハムスター',
-                        'bird' => '鳥類',
-                        'reptile' => '爬虫類',
-                        'other' => 'その他'
-                    ] as $value => $label)
+                    @foreach($animals as $value)
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="{{ $value }}" name="animal[]" value="{{ $label }}" {{ in_array($label, $selectedAnimals) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="{{ $value }}">{{ $label }}</label>
+                        <input class="form-check-input" type="checkbox" id="{{ $value }}" name="animal[]" value="{{ $value }}" {{ in_array($value, $selectedAnimals) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="{{ $value }}">{{ $value }}</label>
                     </div>
                     @endforeach
                 </div>

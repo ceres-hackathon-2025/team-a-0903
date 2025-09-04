@@ -17,6 +17,7 @@ class HospitalController extends Controller
         $selectedAnimals = $request->query('animal', []);
 
         $hospitals = $this->getHospitals();
+        $animals = $this->getAnimals();
 
         if ($keyword) {
             $hospitals = $hospitals->filter(fn($h) => str_contains($h->name, $keyword) || str_contains($h->address, $keyword))->values();
@@ -28,7 +29,7 @@ class HospitalController extends Controller
             })->values();
         }
 
-        return view('index', compact('hospitals', 'selectedAnimals'));
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
     }
 
     /**
@@ -79,6 +80,13 @@ class HospitalController extends Controller
                 'supported_animals' => ['犬', '猫', '鳥', 'その他'],
                 'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+C',
             ],
+        ]);
+    }
+
+    private function getAnimals(): Collection
+    {
+        return collect([
+            '犬', '猫', 'うさぎ', 'ハムスター', '鳥類', '爬虫類', 'その他'
         ]);
     }
 }
