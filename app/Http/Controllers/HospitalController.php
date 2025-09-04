@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\DB; // (例) データベースを使用する場合
+use Illuminate\Support\Collection;
 
 class HospitalController extends Controller
 {
@@ -13,8 +13,31 @@ class HospitalController extends Controller
      */
     public function index(): View
     {
-        // 実際にはデータベースから取得しますが、ここではダミーデータを使用します。
-        $hospitals = collect([
+        $hospitals = $this->getHospitals();
+        return view('index', compact('hospitals'));
+    }
+
+    /**
+     * 動物病院の詳細を表示します。
+     */
+    public function detail(int $id): View
+    {
+        $hospitals = $this->getHospitals();
+        $hospital = $hospitals->firstWhere('id', $id);
+
+        if (!$hospital) {
+            abort(404, '指定された病院は見つかりませんでした。');
+        }
+
+        return view('detail', compact('hospital'));
+    }
+
+    /**
+     * ダミーデータを返す（共通化）
+     */
+    private function getHospitals(): Collection
+    {
+        return collect([
             (object)[
                 'id' => 1,
                 'name' => 'さくら動物病院',
@@ -31,7 +54,7 @@ class HospitalController extends Controller
                 'phone' => '03-2345-6789',
                 'consultation_hours' => '10:00-13:00, 15:00-18:00',
                 'supported_animals' => ['犬', '猫', 'うさぎ', 'ハムスター'],
-                 'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+B',
+                'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+B',
             ],
             (object)[
                 'id' => 3,
@@ -40,10 +63,8 @@ class HospitalController extends Controller
                 'phone' => '03-3456-7890',
                 'consultation_hours' => '09:30-12:30, 16:30-19:30',
                 'supported_animals' => ['犬', '猫', '鳥', 'エキゾチック'],
-                 'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+C',
+                'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+C',
             ],
         ]);
-
-        return view('index', compact('hospitals'));
     }
 }

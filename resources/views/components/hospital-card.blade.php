@@ -29,7 +29,7 @@
     </div>
     <div class="card-footer bg-white border-top-0 rounded-bottom-4">
         {{-- 詳細ページへのルートが 'hospitals.show' の場合 --}}
-        <a href="#" class="btn btn-orange w-100">
+        <a href="{{ route('detail', $hospital->id) }}" class="btn btn-primary w-100">
             <i class="fas fa-info-circle me-1"></i> 詳細を見る
         </a>
     </div>
