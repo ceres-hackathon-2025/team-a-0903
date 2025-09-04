@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hospital;
+use App\Models\Species;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
@@ -16,13 +17,15 @@ class HospitalController extends Controller
     {
         $selectedAnimals = [];
         $hospitals = Hospital::all();
-        $animals = $this->getAnimals();
+        $animals = Species::all();
+        //dd($animals_data);
 
         return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
     }
 
     public function search(Request $request): View
     {
+        //dd($request);
         $keyword = $request->query('keyword', '');
         $selectedAnimals = $request->query('animal', []);
 
