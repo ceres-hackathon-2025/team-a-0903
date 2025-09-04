@@ -60,11 +60,9 @@
         </form>
     </div>
 
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @forelse ($hospitals as $hospital)
             <div class="col">
-                {{-- 病院カードコンポーネントを呼び出し --}}
                 <x-hospital-card :hospital="$hospital" />
             </div>
         @empty
@@ -76,14 +74,11 @@
         @endforelse
     </div>
 
-    {{-- ページネーションリンク (必要に応じて) --}}
-    {{-- 
-    <div class="mt-4">
-        {{ $hospitals->links() }}
-    </div> 
-    --}}
-    <a id="back-to-top-btn" class="back-to-top-btn" href="#" role="button">PAGE TOP</a>
+    {{-- ページネーションリンク --}}
+    {{-- <div class="mt-4">{{ $hospitals->links() }}</div> --}}
 
+    <!-- ページトップに戻るボタンのHTML -->
+    <a id="back-to-top-btn" class="back-to-top-btn" href="#" role="button">PAGE TOP</a>
 @endsection
 
 @push('styles')
@@ -97,45 +92,40 @@
         
         border: none;
         outline: none;
-        background-color: #0d6efd;
+        background-color: #F57C00; /* ▼▼▼ 色をオレンジに変更 ▼▼▼ */
         color: white;
         cursor: pointer;
         
-        /* 変更点：横長のボタンに */
         width: 100px;
         height: 45px;
-        border-radius: 25px; /* カプセル形状にする */
+        border-radius: 25px;
         
-        /* 変更点：文字のスタイル */
         font-size: 14px;
         font-weight: bold;
         text-decoration: none;
-        white-space: nowrap; /* 文字が改行されないようにする */
+        white-space: nowrap;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
-        opacity: 0.8;
+        opacity: 0.9;
         transition: opacity 0.3s;
     }
 
     .back-to-top-btn:hover {
         opacity: 1;
+        background-color: #E65100; /* ▼▼▼ ホバー時の色もオレンジに変更 ▼▼▼ */
     }
 </style>
 @endpush
 
 @push('scripts')
 <script>
-    // 3. ボタンを制御するJavaScript
     document.addEventListener('DOMContentLoaded', function() {
-        // ボタンの要素を取得
         let topBtn = document.getElementById('back-to-top-btn');
 
-        // スクロール時の処理
         window.onscroll = function() {
-            // 画面上部から200px以上スクロールされたらボタンを表示
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 topBtn.style.display = "flex";
             } else {
@@ -143,11 +133,8 @@
             }
         };
 
-        // ボタンクリック時の処理
         topBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // aタグのデフォルトの動作（#へのジャンプ）をキャンセル
-            
-            // ページトップへスムーズにスクロール
+            e.preventDefault();
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
