@@ -18,18 +18,97 @@ class HospitalController extends Controller
         $selectedAnimals = [];
         $hospitals = Hospital::all();
         $animals = Species::all();
-        //dd($animals_data);
 
         return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
     }
 
+    /**
+     * 病院の一覧を表示する
+     */
+    public function search(Request $request) // Requestオブジェクトを受け取る
+    {
+        // 1. ユーザーが入力したキーワードを取得
+        $keyword = $request->input('keyword');
+
+        // 2. 検索クエリを準備
+        $query = Hospital::query();
+
+        // 3. もしキーワードが入力されていれば、検索条件を追加
+        if (!empty($keyword)) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('name', 'LIKE', "%{$keyword}%")
+                  ->orWhere('address', 'LIKE', "%{$keyword}%")
+                  ->orWhere('post_code', 'LIKE', "%{$keyword}%");
+            });
+        }
+
+        // 4. 動物種での絞り込み（ここが重要！）
+        // Bladeから渡された動物IDを配列として受け取る
+        $selectedAnimals = array_values($request->query('animal', []));
+
+        // 配列が空でない（＝1つ以上チェックされている）場合のみ、絞り込み条件を追加
+        if (!empty($selectedAnimals)) {
+            // 'species'というリレーションを持っていて、
+            // そのリレーション先のspeciesテーブルのidが、選択されたIDの配列に含まれている病院を検索
+            $hospitals = $query->whereHas('species', function ($q) use ($selectedAnimals) {
+                $q->whereIn('species.id', $selectedAnimals);
+            })->get();
+        }
+        // 5. データを取得し、ビューに渡す
+        // $hospitals = $query->latest()->get();
+        $animals = Species::orderBy('id')->get();
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'keyword'));
+    }
+
+
+     
+     //テスト
+     /*
+    public function test(Request $request) // Requestオブジェクトを受け取る
+    {
+        // 1. ユーザーが入力したキーワードを取得
+        $keyword = "病院";
+
+        // 2. 検索クエリを準備
+        $query = Hospital::query();
+
+        // 3. もしキーワードが入力されていれば、検索条件を追加
+        if (!empty($keyword)) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('name', 'LIKE', "%{$keyword}%")
+                  ->orWhere('address', 'LIKE', "%{$keyword}%")
+                  ->orWhere('post_code', 'LIKE', "%{$keyword}%");
+            });
+        }
+
+        // 2. 動物種での絞り込み
+        $selected_species_ids = $request->input('species_ids', []); // 配列として受け取る
+        if (!empty($selected_species_ids)) {
+            // whereHas: 'species'というリレーションが存在し、
+            // そのリレーション先のspeciesテーブルのidが選択されたIDのいずれかに合致する病院を検索
+            $query->whereHas('species', function ($q) use ($selected_species_ids) {
+                $q->whereIn('species.id', $selected_species_ids);
+            });
+        }
+
+        // 4. データを取得し、ビューに渡す
+        $hospitals = $query->latest()->get();
+        $animals = $this->getAnimals();
+        $selectedAnimals = [];
+
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
+    }
+*/
+
+
+    /*
     public function search(Request $request): View
     {
         //dd($request);
         $keyword = $request->query('keyword', '');
         $selectedAnimals = $request->query('animal', []);
 
-        $hospitals = $this->getHospitals();
+        Hospital::select()->where()->orderBy;
         $animals = $this->getAnimals();
 
         if ($keyword) {
@@ -44,7 +123,7 @@ class HospitalController extends Controller
 
         return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
     }
-
+*/
     /**
      * 動物病院の詳細を表示します。
      */
@@ -99,7 +178,7 @@ class HospitalController extends Controller
     private function getAnimals(): Collection
     {
         return collect([
-            '犬', '猫', 'うさぎ', 'ハムスター', 'フェレット', '鳥類', '両生類', '爬虫類', 'その他'
+            '犬', '猫', 'うさぎ', 'ハムスター', '鳥類', '爬虫類', 'その他'
         ]);
     }
 }

@@ -19,11 +19,6 @@
                 {{ $hospital->consultation_hours }}
             </li>
         </ul>
-
-        <!--  
-
-        -->
-
     </div>
     <div class="card-footer bg-white border-top-0 rounded-bottom-4">
         {{-- 詳細ページへのルートが 'hospitals.show' の場合 --}}
