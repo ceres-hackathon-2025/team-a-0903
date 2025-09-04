@@ -38,11 +38,9 @@
         </form>
     </div>
 
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @forelse ($hospitals as $hospital)
             <div class="col">
-                {{-- 病院カードコンポーネントを呼び出し --}}
                 <x-hospital-card :hospital="$hospital" />
             </div>
         @empty
@@ -54,10 +52,72 @@
         @endforelse
     </div>
 
-    {{-- ページネーションリンク (必要に応じて) --}}
-    {{-- 
-    <div class="mt-4">
-        {{ $hospitals->links() }}
-    </div> 
-    --}}
+    {{-- ページネーションリンク --}}
+    {{-- <div class="mt-4">{{ $hospitals->links() }}</div> --}}
+
+    <!-- ページトップに戻るボタンのHTML -->
+    <a id="back-to-top-btn" class="back-to-top-btn" href="#" role="button">PAGE TOP</a>
 @endsection
+
+@push('styles')
+<style>
+    .back-to-top-btn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        
+        border: none;
+        outline: none;
+        background-color: #F57C00; /* ▼▼▼ 色をオレンジに変更 ▼▼▼ */
+        color: white;
+        cursor: pointer;
+        
+        width: 100px;
+        height: 45px;
+        border-radius: 25px;
+        
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        white-space: nowrap;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        opacity: 0.9;
+        transition: opacity 0.3s;
+    }
+
+    .back-to-top-btn:hover {
+        opacity: 1;
+        background-color: #E65100; /* ▼▼▼ ホバー時の色もオレンジに変更 ▼▼▼ */
+    }
+</style>
+@endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let topBtn = document.getElementById('back-to-top-btn');
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                topBtn.style.display = "flex";
+            } else {
+                topBtn.style.display = "none";
+            }
+        };
+
+        topBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+@endpush
