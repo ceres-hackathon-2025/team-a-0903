@@ -11,7 +11,16 @@ class HospitalController extends Controller
     /**
      * 動物病院一覧を表示します。
      */
-    public function index(Request $request): View
+    public function index(): View
+    {
+        $selectedAnimals = [];
+        $hospitals = $this->getHospitals();
+        $animals = $this->getAnimals();
+
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
+    }
+
+    public function search(Request $request): View
     {
         $keyword = $request->query('keyword', '');
         $selectedAnimals = $request->query('animal', []);
