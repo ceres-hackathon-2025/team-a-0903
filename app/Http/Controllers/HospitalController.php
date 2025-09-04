@@ -96,7 +96,7 @@ class HospitalController extends Controller
     private function getAnimals(): Collection
     {
         return collect([
-            '犬', '猫', 'うさぎ', 'ハムスター', '鳥類', '爬虫類', 'その他'
+            '犬', '猫', 'うさぎ', 'ハムスター', 'フェレット', '鳥類', '両生類', '爬虫類', 'その他'
         ]);
     }
 }
