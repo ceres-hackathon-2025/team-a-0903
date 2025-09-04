@@ -37,9 +37,10 @@
 
  
         </div>
-        {{-- 戻るボタン --}}
-        <a href="{{ route('index') }}" class="btn btn-outline-secondary, mt-4">
-            <i class="fas fa-arrow-left me-1"></i> 一覧に戻る
-        </a>
+
     </div>
+        {{-- 戻るボタン --}}
+    <a href="{{ route('index') }}" class="btn btn-orange mt-4">
+        <i class="fas fa-arrow-left me-1"></i> 一覧に戻る
+    </a>
 @endsection
