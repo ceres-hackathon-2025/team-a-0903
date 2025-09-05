@@ -41,7 +41,7 @@
                 <div class="d-flex flex-wrap gap-2">
                     
                     <div class="form-check">
-                        <input class="form-check-input border-width" type="checkbox" id="{{ $businessFlg }}" name="businessFlg" value="0" {{$businessFlg == "0" ? 'checked' : '' }}>
+                        <input class="form-check-input border-width" type="checkbox" id="{{ $businessFlg }}" name="businessFlg" value="1" {{$businessFlg == "1" ? 'checked' : '' }}>
                         <label class="form-check-label" for="{{ $businessFlg }}">営業中のみ表示</label>
                     </div>
                     
