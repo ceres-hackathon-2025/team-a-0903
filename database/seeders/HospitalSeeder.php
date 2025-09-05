@@ -65,6 +65,59 @@ class HospitalSeeder extends Seeder
             'googleMap_url' => 'https://www.google.com/maps/search/?api=1&query=東京都渋谷区猿楽町3番9号',
         ]);
 
+        //以下ダミー
+        Hospital::create([
+            'id' => 6,
+            'name' => 'D_1',
+            'post_code' => '150-0033',
+            'address' => '茨城県つくば市君島535番地13号',
+            'tel' => '03-6712-7299',
+            'homepage_url' => null,
+            'images' => null,
+            'googleMap_url' => null,
+        ]);
+         Hospital::create([
+            'id' => 7,
+            'name' => 'D_2',
+            'post_code' => '150-0033',
+            'address' => '大分県豊後大野市三重町伏野576番地17号',
+            'tel' => '03-6712-7299',
+            'homepage_url' => null,
+            'images' => null,
+            'googleMap_url' => null,
+        ]);
+         Hospital::create([
+            'id' => 8,
+            'name' => 'D_3',
+            'post_code' => '150-0033',
+            'address' => '高知県安芸郡安田町西島537番地15号',
+            'tel' => '03-6712-7299',
+            'homepage_url' => null,
+            'images' => null,
+            'googleMap_url' => null,
+        ]);
+         Hospital::create([
+            'id' => 9,
+            'name' => 'D_4',
+            'post_code' => '150-0033',
+            'address' => '新潟県十日町市西寺町17番地17号',
+            'tel' => '03-6712-7299',
+            'homepage_url' => null,
+            'images' => null,
+            'googleMap_url' => null,
+        ]);
+         Hospital::create([
+            'id' => 10,
+            'name' => 'D_5',
+            'post_code' => '150-0033',
+            'address' => '大阪府堺市南区鴨谷台1丁目231番地13号',
+            'tel' => '03-6712-7299',
+            'homepage_url' => null,
+            'images' => null,
+            'googleMap_url' => null,
+        ]);
+        
+
 
 
     }

@@ -2,447 +2,75 @@
 
 namespace Database\Seeders;
 
-use App\Models\BusinessHour;  // モデルをインポート
 use Illuminate\Database\Seeder;
+use App\Models\BusinessHour;
 
 class BusinessHourSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-         BusinessHour::create([
-            'id' => 1,
-            'hospital_id' =>1,
-            'day_of_week' => 1,
-            'start_time' => '09:30',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 2,
-            'hospital_id' =>1,
-            'day_of_week' => 2,
-            'start_time' => '09:30',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 3,
-            'hospital_id' =>1,
-            'day_of_week' => 3,
-            'start_time' => '09:30',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 4,
-            'hospital_id' =>1,
-            'day_of_week' => 4,
-            'start_time' => '09:30',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 5,
-            'hospital_id' =>1,
-            'day_of_week' => 5,
-            'start_time' => '09:30',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 6,
-            'hospital_id' =>1,
-            'day_of_week' => 6,
-            'start_time' => '09:30',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 7,
-            'hospital_id' =>1,
-            'day_of_week' => 7,
-            'start_time' => '09:30',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 8,
-            'hospital_id' =>1,
-            'day_of_week' => 1,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 9,
-            'hospital_id' =>1,
-            'day_of_week' => 2,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 10,
-            'hospital_id' =>1,
-            'day_of_week' => 3,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 11,
-            'hospital_id' =>1,
-            'day_of_week' => 4,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 12,
-            'hospital_id' =>1,
-            'day_of_week' => 5,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 13,
-            'hospital_id' =>1,
-            'day_of_week' => 6,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 14,
-            'hospital_id' =>1,
-            'day_of_week' => 7,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 15,
-            'hospital_id' =>2,
-            'day_of_week' => 2,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 16,
-            'hospital_id' =>2,
-            'day_of_week' => 3,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 17,
-            'hospital_id' =>2,
-            'day_of_week' => 4,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 18,
-            'hospital_id' =>2,
-            'day_of_week' => 5,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 19,
-            'hospital_id' =>2,
-            'day_of_week' => 6,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 20,
-            'hospital_id' =>2,
-            'day_of_week' => 7,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 21,
-            'hospital_id' =>2,
-            'day_of_week' => 2,
-            'start_time' => '16:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 22,
-            'hospital_id' =>2,
-            'day_of_week' => 3,
-            'start_time' => '16:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 23,
-            'hospital_id' =>2,
-            'day_of_week' => 4,
-            'start_time' => '16:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 24,
-            'hospital_id' =>2,
-            'day_of_week' => 5,
-            'start_time' => '16:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 25,
-            'hospital_id' =>2,
-            'day_of_week' => 6,
-            'start_time' => '16:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 26,
-            'hospital_id' =>2,
-            'day_of_week' => 7,
-            'start_time' => '16:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 27,
-            'hospital_id' =>2,
-            'day_of_week' => 2,
-            'start_time' => '20:00',
-            'end_time' => '22:00',
-        ]);
-         BusinessHour::create([
-            'id' => 28,
-            'hospital_id' =>2,
-            'day_of_week' => 3,
-            'start_time' => '20:00',
-            'end_time' => '22:00',
-        ]);
-         BusinessHour::create([
-            'id' => 29,
-            'hospital_id' =>2,
-            'day_of_week' => 4,
-            'start_time' => '20:00',
-            'end_time' => '22:00',
-        ]);
-         BusinessHour::create([
-            'id' => 30,
-            'hospital_id' =>2,
-            'day_of_week' => 5,
-            'start_time' => '20:00',
-            'end_time' => '22:00',
-        ]);
-         BusinessHour::create([
-            'id' => 31,
-            'hospital_id' =>3,
-            'day_of_week' => 1,
-            'start_time' => '10:00',
-            'end_time' => '13:00',
-        ]);
-        BusinessHour::create([
-            'id' => 32,
-            'hospital_id' =>3,
-            'day_of_week' => 2,
-            'start_time' => '10:00',
-            'end_time' => '13:00',
-        ]);
-        BusinessHour::create([
-            'id' => 33,
-            'hospital_id' =>3,
-            'day_of_week' => 3,
-            'start_time' => '10:00',
-            'end_time' => '13:00',
-        ]);
-        BusinessHour::create([
-            'id' => 34,
-            'hospital_id' =>3,
-            'day_of_week' => 5,
-            'start_time' => '10:00',
-            'end_time' => '13:00',
-        ]);
-        BusinessHour::create([
-            'id' => 35,
-            'hospital_id' =>3,
-            'day_of_week' => 6,
-            'start_time' => '10:00',
-            'end_time' => '13:00',
-        ]);
-        BusinessHour::create([
-            'id' => 36,
-            'hospital_id' =>3,
-            'day_of_week' => 1,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 37,
-            'hospital_id' =>3,
-            'day_of_week' => 2,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 38,
-            'hospital_id' =>3,
-            'day_of_week' => 3,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 39,
-            'hospital_id' =>3,
-            'day_of_week' => 5,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 40,
-            'hospital_id' =>3,
-            'day_of_week' => 6,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-        BusinessHour::create([
-            'id' => 41,
-            'hospital_id' =>4,
-            'day_of_week' => 1,
-            'start_time' => '08:00',
-            'end_time' => '18:00',
-        ]);
-        BusinessHour::create([
-            'id' => 42,
-            'hospital_id' =>4,
-            'day_of_week' => 2,
-            'start_time' => '08:00',
-            'end_time' => '18:00',
-        ]);
-         BusinessHour::create([
-            'id' => 43,
-            'hospital_id' =>4,
-            'day_of_week' => 3,
-            'start_time' => '08:00',
-            'end_time' => '18:00',
-        ]);
-         BusinessHour::create([
-            'id' => 44,
-            'hospital_id' =>4,
-            'day_of_week' => 4,
-            'start_time' => '08:00',
-            'end_time' => '18:00',
-        ]);
-         BusinessHour::create([
-            'id' => 45,
-            'hospital_id' =>4,
-            'day_of_week' => 5,
-            'start_time' => '08:00',
-            'end_time' => '18:00',
-        ]);
-         BusinessHour::create([
-            'id' => 46,
-            'hospital_id' =>4,
-            'day_of_week' => 6,
-            'start_time' => '08:00',
-            'end_time' => '18:00',
-        ]);
-         BusinessHour::create([
-            'id' => 47,
-            'hospital_id' =>4,
-            'day_of_week' => 7,
-            'start_time' => '08:00',
-            'end_time' => '18:00',
-        ]);
-         BusinessHour::create([
-            'id' => 48,
-            'hospital_id' =>5,
-            'day_of_week' => 1,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 49,
-            'hospital_id' =>5,
-            'day_of_week' => 2,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 50,
-            'hospital_id' =>5,
-            'day_of_week' => 3,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 51,
-            'hospital_id' =>5,
-            'day_of_week' => 4,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 52,
-            'hospital_id' =>5,
-            'day_of_week' => 5,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 53,
-            'hospital_id' =>5,
-            'day_of_week' => 6,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 54,
-            'hospital_id' =>5,
-            'day_of_week' => 7,
-            'start_time' => '09:00',
-            'end_time' => '12:00',
-        ]);
-         BusinessHour::create([
-            'id' => 55,
-            'hospital_id' =>5,
-            'day_of_week' => 1,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 56,
-            'hospital_id' =>5,
-            'day_of_week' => 2,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 57,
-            'hospital_id' =>5,
-            'day_of_week' => 3,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 58,
-            'hospital_id' =>5,
-            'day_of_week' => 4,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 59,
-            'hospital_id' =>5,
-            'day_of_week' => 5,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 60,
-            'hospital_id' =>5,
-            'day_of_week' => 6,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
-         BusinessHour::create([
-            'id' => 61,
-            'hospital_id' =>5,
-            'day_of_week' => 7,
-            'start_time' => '15:00',
-            'end_time' => '19:00',
-        ]);
+        // 各病院の営業時間を定義
+        $hours = [
+            1 => [ // 病院1
+                ['09:30', '12:00'],
+                ['15:00', '19:00'],
+            ],
+            2 => [ // 病院2
+                ['09:00', '12:00', [2,3,4,5,6,7]],
+                ['16:00', '19:00', [2,3,4,5,6,7]],
+                ['20:00', '22:00', [2,3,4,5,6,7]],
+            ],
+            3 => [ // 病院3
+                ['10:00', '13:00', [1, 2, 3, 5, 6]],
+                ['15:00', '19:00', [1, 2, 3, 5, 6]],
+            ],
+            4 => [ // 病院4
+                ['08:00', '18:00'],
+            ],
+            5 => [ // 病院5
+                ['09:00', '12:00'],
+                ['15:00', '19:00'],
+            ],
 
-    
+            #以下ダミー
+            6 => [ // 病院6
+                ['09:00', '12:00'],
+                ['15:00', '16:00'],
+            ],
+            7 => [ // 病院7
+                ['09:00', '12:00'],
+                ['15:00', '24:00'],
+            ],
+            8 => [ // 病院8
+                ['00:00', '12:00'],
+                ['15:00', '23:00'],
+            ],
+            9 => [ // 病院9
+                ['09:00', '12:00'],
+                ['15:00', '17:00'],
+            ],
+            10 => [ // 病院10
+                ['09:00', '12:00'],
+                ['15:00', '18:00'],
+            ],
+        ];
 
+        foreach ($hours as $hospitalId => $timeBlocks) {
+            foreach ($timeBlocks as $block) {
+                // 時間帯だけが定義されている場合 → 全曜日
+                $start = $block[0];
+                $end = $block[1];
+                $days = $block[2] ?? range(1, 7); // 曜日指定がなければ1〜7
 
-    }   
+                foreach ($days as $day) {
+                    BusinessHour::create([
+                        'hospital_id' => $hospitalId,
+                        'day_of_week' => $day,
+                        'start_time' => $start,
+                        'end_time' => $end,
+                    ]);
+                }
+            }
+        }
+    }
 }
-

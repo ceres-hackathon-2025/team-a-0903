@@ -30,6 +30,13 @@ class HospitalSpeciesSeeder extends Seeder
 
         // 複数の動物をまとめて関連付けることも可能
         $hospitals->find(5)->species()->attach([1, 2, 3, 4, 7, 8]);
+
+        //以下ダミー
+        $hospitals->find(6)->species()->attach([5]);
+        $hospitals->find(7)->species()->attach([6]);
+        $hospitals->find(8)->species()->attach([5,6]);
+        $hospitals->find(9)->species()->attach([1]);
+        $hospitals->find(10)->species()->attach([3,4,5]);
     }
 }
 
