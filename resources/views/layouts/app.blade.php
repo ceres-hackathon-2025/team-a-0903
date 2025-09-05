@@ -7,7 +7,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="/images/icon_images/icon.png">
+    <link rel="icon" href="/images/icon_images/icon3.png">
     {{-- ▼▼▼ オレンジ色のためのCSSを追加 ▼▼▼ --}}
     <style>
         body { 
@@ -72,10 +72,10 @@
 <header>
     <div class="container-fluid py-3 text-center">
         <a href="{{ route('index') }}" class="h1 text-decoration-none text-dark d-flex align-items-center justify-content-center gap-2 flex-wrap">
-            <img src="{{ asset('images/icon_images/icon.png') }}" 
+            <img src="{{ asset('images/icon_images/icon3.png') }}" 
                  alt="ペットレス急 アイコン" 
                  class="logo-img icon-img">
-            <img src="{{ asset('images/icon_images/logo.png') }}" 
+            <img src="{{ asset('images/icon_images/logo3.png') }}" 
                  alt="ペットレス急 ロゴ" 
                  class="logo-img text-logo">
         </a>
