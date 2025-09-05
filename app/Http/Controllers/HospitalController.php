@@ -26,7 +26,7 @@ class HospitalController extends Controller
             '土曜日',
         ];
 
-
+        $businessFlg = null;
         $selectedAnimals = [];
         $animals = Species::all();
         $hospitals = Hospital::with('species', 'businessHours', 'hospitalImages')->get();
@@ -34,7 +34,7 @@ class HospitalController extends Controller
         $now = Carbon::now('Asia/Tokyo');
         $currentDay = $now->dayOfWeekIso;
 
-        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'currentDay', 'weeks'));
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'currentDay', 'weeks', 'businessFlg'));
     }
    
 
@@ -43,6 +43,7 @@ class HospitalController extends Controller
      */
     public function search(Request $request) // Requestオブジェクトを受け取る
     {
+        // dd($request);
 
         $weeks = [
             '日曜日',
@@ -54,6 +55,9 @@ class HospitalController extends Controller
             '土曜日',
         ];
 
+        $businessFlg = $request->query('businessFlg');
+
+        //dd($businessFlg);
         // 1. ユーザーが入力したキーワードを取得
         $keyword = $request->input('keyword');
 
@@ -88,7 +92,6 @@ class HospitalController extends Controller
         $currentDay = $now->dayOfWeekIso;      // 現在の曜日を取得 (月曜:1, ..., 日曜:7)
         $currentTime = $now->format('H:i'); // 現在の時刻を取得 ('HH:MM'形式)
 
-        
         if (!empty($businessFlg)) {
             $query->whereHas('businessHours', function ($q) use ($currentDay, $currentTime) {
                 $q->where('day_of_week', $currentDay)
@@ -101,7 +104,7 @@ class HospitalController extends Controller
         // 6. データを取得し、ビューに渡す
         $hospitals = $query->latest()->get();
         $animals = Species::orderBy('id')->get();
-        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'keyword', 'currentDay', 'weeks'));
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'keyword', 'currentDay', 'weeks', 'businessFlg'));
     }
 
 
