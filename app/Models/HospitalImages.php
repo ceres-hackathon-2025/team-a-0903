@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class HospitalImages extends Model
 {
-    protected $fillable = ['hospital_id', 'image_path'];
 
-    public function hospital()
+    //
+    
+    public function hospitals(): BelongsTo
     {
         return $this->belongsTo(Hospital::class);
     }
