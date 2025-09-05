@@ -41,6 +41,11 @@ class Hospital extends Model
     {
         return $this->hasMany(BusinessHour::class);
     }
+
+    public function hospitalImages(): HasMany
+    {
+        return $this->hasMany(HospitalImages::class);
+    }
     
     /**
      * この病院が取り扱う動物種を取得 (ここから追記)

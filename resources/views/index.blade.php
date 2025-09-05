@@ -29,7 +29,7 @@
                 <div class="d-flex flex-wrap gap-2">
                     @foreach($animals as $value)
                     <div class="form-check">
-                        <input class="form-check-input border-width" type="checkbox" id="{{ $value->id }}" name="animal[]" value="{{ $value->name }}" {{ in_array($value->id, $selectedAnimals) ? 'checked' : '' }}>
+                        <input class="form-check-input border-width" type="checkbox" id="{{ $value->id }}" name="animal[]" value="{{ $value->id }}" {{ in_array($value->id, $selectedAnimals) ? 'checked' : '' }}>
                         <label class="form-check-label" for="{{ $value->id }}">{{ $value->name }}</label>
                     </div>
                     @endforeach
@@ -41,7 +41,7 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @forelse ($hospitals as $hospital)
             <div class="col">
-                <x-hospital-card :hospital="$hospital" />
+                <x-hospital-card :hospital="$hospital" :currentDay="$currentDay" :weeks="$weeks" />
             </div>
         @empty
             <div class="col-12">

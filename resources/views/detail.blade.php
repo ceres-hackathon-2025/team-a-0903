@@ -5,9 +5,10 @@
 @section('content')
     <div class="card shadow-sm h-100 border-0">
         {{-- 画像 --}}
-        <img src="{{ $hospital->image_url }}" 
-             class="card-img-top hospital-card-img" 
-             alt="{{ $hospital->name }}">
+        @foreach($hospital->hospitalImages as $image)
+            <img src="{{ $image->image_path }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
+
+        @endforeach
 
         <div class="card-body">
             {{-- 病院名 --}}
@@ -27,25 +28,51 @@
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-clock text-orange me-2"></i>
-                    <strong>診療時間:</strong> 
+                    <strong>診療時間:</strong>
+                    <ul class="list-unstyled mt-2 ms-4">
+                    @for ($i = 0; $i <= 6; $i++)
+                    @php
+                    $flg = 0
+                    @endphp
                     <li>
-                        月曜日：
-                        @foreach ($hospital->businessHours as $hours)
-                        
-                            @if ($hours->day_of_week == (object)["1"])
-                                {{ $hours->start_time }} ~ {{ $hours->end_time }}
-                            @endif
-                        @endforeach
+                    {{ $weeks[$i] }}：
+                    @foreach ($hospital->businessHours as $hours)
+                    @if ($hours->day_of_week->value == $i)
+                        @php
+                        $flg = 1
+                        @endphp
+                        {{ $hours->start_time->format('H:i') }} ~ {{ $hours->end_time->format('H:i') }}　
+                        @endif
+                    @endforeach
+                    @if ($flg == 0) 
+                    休業日
+                    @endif
                     </li>
+                    @endfor
+                </ul>
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-dog text-orange me-2"></i>
-                    <strong>対応動物:</strong> 
-                    @foreach ($hospital->species as $animal)
-                    {{ $animal->name }}
+                    @foreach($hospital->species as $animal)
+                        {{ $animal->name }} @if (!$loop->last)<span>、</span>@endif
                     @endforeach
                 </li>
             </ul>
+            
+
+            {{-- 地図表示 --}}
+            @if($hospital->address)
+                <h5 class="fw-bold">マップ</h5>
+                <div class="ratio ratio-4x3">
+                <iframe
+                    src="https://www.google.com/maps?q={{ urlencode($hospital->address) }}&output=embed"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                </div>
+            @endif
 
  
         </div>
