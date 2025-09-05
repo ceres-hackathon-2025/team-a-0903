@@ -16,49 +16,49 @@ class BusinessHourSeeder extends Seeder
             'id' => 1,
             'hospital_id' =>1,
             'day_of_week' => 1,
-            'start_time' => '9:30',
+            'start_time' => '09:30',
             'end_time' => '12:00',
         ]);
          BusinessHour::create([
             'id' => 2,
             'hospital_id' =>1,
             'day_of_week' => 2,
-            'start_time' => '9:30',
+            'start_time' => '09:30',
             'end_time' => '12:00',
         ]);
          BusinessHour::create([
             'id' => 3,
             'hospital_id' =>1,
             'day_of_week' => 3,
-            'start_time' => '9:30',
+            'start_time' => '09:30',
             'end_time' => '12:00',
         ]);
          BusinessHour::create([
             'id' => 4,
             'hospital_id' =>1,
             'day_of_week' => 4,
-            'start_time' => '9:30',
+            'start_time' => '09:30',
             'end_time' => '12:00',
         ]);
          BusinessHour::create([
             'id' => 5,
             'hospital_id' =>1,
             'day_of_week' => 5,
-            'start_time' => '9:30',
+            'start_time' => '09:30',
             'end_time' => '12:00',
         ]);
          BusinessHour::create([
             'id' => 6,
             'hospital_id' =>1,
             'day_of_week' => 6,
-            'start_time' => '9:30',
+            'start_time' => '09:30',
             'end_time' => '12:00',
         ]);
          BusinessHour::create([
             'id' => 7,
             'hospital_id' =>1,
             'day_of_week' => 7,
-            'start_time' => '9:30',
+            'start_time' => '09:30',
             'end_time' => '12:00',
         ]);
          BusinessHour::create([
