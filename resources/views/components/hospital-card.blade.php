@@ -1,7 +1,7 @@
 @props(['hospital'])
 
 <div class="card shadow-sm h-100 rounded-4">
-    <img src="{{ $hospital->image_url ?? 'https://via.placeholder.com/300x200.png?text=No+Image' }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
+    <img src="{{ $hospital->images ?? 'https://via.placeholder.com/300x200.png?text=No+Image' }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title fw-bold">{{ $hospital->name }}</h5>
         
