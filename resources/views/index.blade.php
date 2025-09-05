@@ -52,23 +52,34 @@
         @endforelse
     </div>
 
-    {{-- ページネーションリンク --}}
-    {{-- <div class="mt-4">{{ $hospitals->links() }}</div> --}}
-
-    <!-- ページトップに戻るボタンのHTML -->
+    <!-- ページトップに戻るボタン -->
     <a id="back-to-top-btn" class="back-to-top-btn" href="#" role="button">PAGE TOP</a>
+
+    <!-- ▼ AIチャットボット ▼ -->
+    <div id="chatbot-container">
+        <button id="chatbot-toggle">
+            💬
+        </button>
+        <div id="chatbot-box">
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="ペットの症状を入力..." />
+                <button id="chatbot-send">送信</button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('styles')
 <style>
     .form-control {
-        border: 2.5px solid #666; /* 枠線を太めに */
-        box-shadow: none;        /* Bootstrapの影を消す（好みで） */
+        border: 2.5px solid #666;
+        box-shadow: none;
     }
     .form-check-input {
         width: 1.3em;
         height: 1.3em;
-        border: 2.5px solid #666; /* ▼ 枠線を太めにする ▼ */
+        border: 2.5px solid #666;
         margin-top: 0.2em;
         cursor: pointer;
     }
@@ -77,34 +88,77 @@
         position: fixed;
         bottom: 20px;
         right: 30px;
-        z-index: 99;
-        
+        z-index: 90;
         border: none;
-        outline: none;
-        background-color: #F57C00; /* ▼▼▼ 色をオレンジに変更 ▼▼▼ */
+        background-color: #F57C00;
         color: white;
         cursor: pointer;
-        
         width: 100px;
         height: 45px;
         border-radius: 25px;
-        
         font-size: 14px;
         font-weight: bold;
-        text-decoration: none;
-        white-space: nowrap;
-
         display: flex;
         justify-content: center;
         align-items: center;
-
         opacity: 0.9;
         transition: opacity 0.3s;
     }
-
     .back-to-top-btn:hover {
         opacity: 1;
-        background-color: #E65100; /* ▼▼▼ ホバー時の色もオレンジに変更 ▼▼▼ */
+        background-color: #E65100;
+    }
+
+    /* ▼ チャットボット ▼ */
+    #chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 100;
+    }
+    #chatbot-toggle {
+        background: #F57C00;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+    }
+    #chatbot-box {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 300px;
+        height: 400px;
+        background: white;
+        border: 2px solid #F57C00;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        margin-bottom: 10px;
+    }
+    #chatbot-messages {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        font-size: 14px;
+    }
+    #chatbot-input-area {
+        display: flex;
+        border-top: 1px solid #ccc;
+    }
+    #chatbot-input {
+        flex: 1;
+        border: none;
+        padding: 8px;
+    }
+    #chatbot-send {
+        background: #F57C00;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        cursor: pointer;
     }
 </style>
 @endpush
@@ -112,8 +166,8 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // ページトップボタン
         let topBtn = document.getElementById('back-to-top-btn');
-
         window.onscroll = function() {
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 topBtn.style.display = "flex";
@@ -121,13 +175,38 @@
                 topBtn.style.display = "none";
             }
         };
-
         topBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // チャットボット
+        const toggleBtn = document.getElementById('chatbot-toggle');
+        const chatBox = document.getElementById('chatbot-box');
+        const sendBtn = document.getElementById('chatbot-send');
+        const input = document.getElementById('chatbot-input');
+        const messages = document.getElementById('chatbot-messages');
+
+        toggleBtn.addEventListener('click', () => {
+            chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        sendBtn.addEventListener('click', () => {
+            const text = input.value.trim();
+            if (!text) return;
+
+            // ユーザーメッセージを追加
+            const userMsg = document.createElement('div');
+            userMsg.textContent = "👤: " + text;
+            messages.appendChild(userMsg);
+
+            // 擬似レスポンス
+            const botMsg = document.createElement('div');
+            botMsg.textContent = "🐾: ご質問ありがとうございます。「" + text + "」についてですね。";
+            messages.appendChild(botMsg);
+
+            messages.scrollTop = messages.scrollHeight;
+            input.value = '';
         });
     });
 </script>
