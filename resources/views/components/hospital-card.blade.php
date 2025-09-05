@@ -1,6 +1,6 @@
 @props(['hospital', 'currentDay', 'weeks'])
 
-<div class="card shadow-sm h-100 rounded-4">
+<div class="card hospital-card h-100 rounded-4">
     @foreach($hospital->hospitalImages as $image)
         @if ($loop->first)
             <img src="{{ $image->image_path }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
@@ -46,3 +46,11 @@
         </a>
     </div>
 </div>
+
+@push('style')
+.hospital-card {
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(197, 197, 197, 0.01); /* 通常時の影 */
+}
+@endpush

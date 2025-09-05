@@ -50,11 +50,11 @@
 </head>
 <body>
 <header>
-    <div class="container-fluid py-3" >
+    <div class="container-fluid py-3 text-center" >
         <a href="{{ route('index') }}" class="h1 text-decoration-none text-dark">
             <!-- <i class="fas fa-paw text-orange me-2"></i> -->
-            <img src="{{ asset('images/icon_images/icon.png') }}" alt="ペットレス急 アイコン" style="height: 70px; width:auto;">
-            <img src="{{ asset('images/icon_images/logo.png') }}" alt="ペットレス急 ロゴ" style="height: 50px; width: auto;">
+            <img src="{{ asset('images/icon_images/icon.png') }}" alt="ペットレス急 アイコン" style="height: 100px; width:auto;">
+            <img src="{{ asset('images/icon_images/logo.png') }}" alt="ペットレス急 ロゴ" style="height: 120px; width: auto;">
         </a>
     </div>
 </header>
