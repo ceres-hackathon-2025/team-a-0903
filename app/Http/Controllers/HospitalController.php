@@ -17,7 +17,6 @@ class HospitalController extends Controller
     public function index(): View
     {
         $selectedAnimals = [];
-        //$hospitals = Hospital::all();
         $animals = Species::all();
         $hospitals = Hospital::with('species', 'businessHours')->get();
 
@@ -83,8 +82,6 @@ class HospitalController extends Controller
      */
     public function detail(int $id): View
     {
-
-        $animals = Species::all();
         $hospitals = Hospital::with('species', 'businessHours')->get();
         $hospital = $hospitals->firstWhere('id', $id);
 
