@@ -15,6 +15,13 @@ class HospitalImagesSeeder extends Seeder
             3 => ['lulu_1.jpg', 'lulu_2.jpg'],
             4 => ['doggy_1.jpg', 'doggy_2.jpg'],
             5 => ['halu_1.jpg', 'halu_2.jpg'],
+
+            //以下ダミー
+            6 => ['friends_1.jpg', 'friends_2.jpg'],
+            7 => ['動物医療センター_1.jpg', '動物医療センター_2.jpg'],
+            8 => ['lulu_1.jpg', 'lulu_2.jpg'],
+            9 => ['doggy_1.jpg', 'doggy_2.jpg'],
+            10 => ['halu_1.jpg', 'halu_2.jpg'],
         ];
 
         foreach ($hospitalImages as $hospitalId => $images) {

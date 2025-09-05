@@ -49,5 +49,12 @@ class Hospital extends Model
     {
         return $this->belongsToMany(Species::class, 'hospital_species');
     }
+    
+    // App\Models\Hospital.php
+
+public function hospitalImages()
+{
+    return $this->hasMany(HospitalImages::class);
+}
 
 }
