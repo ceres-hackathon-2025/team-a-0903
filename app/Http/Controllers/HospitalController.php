@@ -16,12 +16,24 @@ class HospitalController extends Controller
      */
     public function index(): View
     {
+        $weeks = [
+            '日曜日',
+            '月曜日',
+            '火曜日',
+            '水曜日',
+            '木曜日',
+            '金曜日',
+            '土曜日',
+        ];
+
         $selectedAnimals = [];
         $animals = Species::all();
         $hospitals = Hospital::with('species', 'businessHours')->get();
 
+        $now = Carbon::now('Asia/Tokyo');
+        $currentDay = $now->dayOfWeekIso;
 
-        return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'currentDay', 'weeks'));
     }
    
 
@@ -30,6 +42,17 @@ class HospitalController extends Controller
      */
     public function search(Request $request) // Requestオブジェクトを受け取る
     {
+
+        $weeks = [
+            '日曜日',
+            '月曜日',
+            '火曜日',
+            '水曜日',
+            '木曜日',
+            '金曜日',
+            '土曜日',
+        ];
+
         // 1. ユーザーが入力したキーワードを取得
         $keyword = $request->input('keyword');
 
@@ -73,7 +96,7 @@ class HospitalController extends Controller
         // 6. データを取得し、ビューに渡す
         $hospitals = $query->latest()->get();
         $animals = Species::orderBy('id')->get();
-        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'keyword'));
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'keyword', 'currentDay', 'weeks'));
     }
 
 

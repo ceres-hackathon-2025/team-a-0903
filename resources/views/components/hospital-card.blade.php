@@ -1,7 +1,7 @@
-@props(['hospital'])
+@props(['hospital', 'currentDay', 'weeks'])
 
 <div class="card shadow-sm h-100 rounded-4">
-    <img src="{{ $hospital->image_url ?? 'https://via.placeholder.com/300x200.png?text=No+Image' }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
+    <img src="{{ $hospital->images ?? 'https://via.placeholder.com/300x200.png?text=No+Image' }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title fw-bold">{{ $hospital->name }}</h5>
         
@@ -16,11 +16,16 @@
                 <i class="fas fa-phone fa-fw me-2"></i>
                 {{ $hospital->tel }}
             </li>
-
-            <li class="mb-2">
-                <i class="fas fa-clock fa-fw me-2"></i>
-            </li>
-
+            {{ $weeks[$currentDay] }} の営業時間
+            @foreach ($hospital->businessHours as $hours)
+            @if($hours->day_of_week->value %7 == $currentDay)
+                <li class="mb-2">
+                    <i class="fas fa-clock fa-fw me-2"></i>
+                    {{ $hours->start_time->format('H:i') }} ~ {{ $hours->end_time->format('H:i') }}
+                    <!-- {{ $hours['day_of_week'] }} -->
+                </li>
+            @endif
+            @endforeach
         </ul>
 
         <div>
