@@ -23,29 +23,32 @@
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-phone text-orange me-2"></i>
-                    <strong>電話番号:</strong> {{ $hospital->tel }}
+                    <strong>電話番号:</strong> {{ $hospital->phone }}
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-clock text-orange me-2"></i>
-                    <strong>診療時間:</strong> 
-                    <li>
-                        月曜日：
-                        @foreach ($hospital->businessHours as $hours)
-                        
-                            @if ($hours->day_of_week == (object)["1"])
-                                {{ $hours->start_time }} ~ {{ $hours->end_time }}
-                            @endif
-                        @endforeach
-                    </li>
+                    <strong>診療時間:</strong> {{ $hospital->consultation_hours }}
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-dog text-orange me-2"></i>
-                    <strong>対応動物:</strong> 
-                    @foreach ($hospital->species as $animal)
-                    {{ $animal->name }}
-                    @endforeach
+
                 </li>
             </ul>
+            
+
+            {{-- 地図表示 --}}
+            @if($hospital->address)
+                <h5 class="fw-bold">マップ</h5>
+                <div class="ratio ratio-4x3">
+                <iframe
+                    src="https://www.google.com/maps?q={{ urlencode($hospital->address) }}&output=embed"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                </div>
+            @endif
 
  
         </div>
