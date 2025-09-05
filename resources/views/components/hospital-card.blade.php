@@ -11,7 +11,7 @@
         
         <ul class="list-unstyled text-muted mt-3 mb-4 flex-grow-1">
             <li class="mb-2">
-                <a href="{{ $hospital->googleMap_url }}">
+                <a href="{{ $hospital->googleMap_url }}" target="_blank">
                 <i class="fas fa-map-marker-alt fa-fw me-2"></i>
                 {{ $hospital->address }}
                 </a>
