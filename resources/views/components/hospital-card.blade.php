@@ -16,14 +16,13 @@
                 <i class="fas fa-phone fa-fw me-2"></i>
                 {{ $hospital->tel }}
             </li>
-            
+            @foreach ($hospital->businessHours as $hours)
             <li class="mb-2">
                 <i class="fas fa-clock fa-fw me-2"></i>
-                
+                {{  }}
             </li>
-            
+            @endforeach
         </ul>
-<<<<<<< HEAD
 
         <div>
             @foreach($hospital->species as $animal)
@@ -31,12 +30,6 @@
             @endforeach
         </div>
 
-        <!--  
-
-        -->
-
-=======
->>>>>>> 13814c1be23c41dbcdb8b96c22b84a0648370341
     </div>
     <div class="card-footer bg-white border-top-0 rounded-bottom-4">
         {{-- 詳細ページへのルートが 'hospitals.show' の場合 --}}
