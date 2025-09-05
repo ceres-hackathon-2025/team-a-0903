@@ -108,14 +108,14 @@ class HospitalController extends Controller
         $hospitals = Hospital::with('species', 'businessHours')->get();
         $hospital = $hospitals->firstWhere('id', $id);
 
-        $weeks = (object)[
-            1 => '月曜日',
-            2 => '火曜日',
-            3 => '水曜日',
-            4 => '木曜日',
-            5 => '金曜日',
-            6 => '土曜日',
-            7 => '日曜日',
+        $weeks = [
+            '日曜日',
+            '月曜日',
+            '火曜日',
+            '水曜日',
+            '木曜日',
+            '金曜日',
+            '土曜日',
         ];
         if (!$hospital) {
             abort(404, '指定された病院は見つかりませんでした。');
