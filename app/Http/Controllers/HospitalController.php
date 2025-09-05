@@ -83,15 +83,19 @@ class HospitalController extends Controller
         }
 
         // 5.「現在営業中」での絞り込み (ここからが追加部分)
+        
         $now = Carbon::now('Asia/Tokyo');
         $currentDay = $now->dayOfWeekIso;      // 現在の曜日を取得 (月曜:1, ..., 日曜:7)
-        $currentTime = $now->format('H:i'); // 現在の時刻を取得 ('HH:MM:SS'形式)
+        $currentTime = $now->format('H:i'); // 現在の時刻を取得 ('HH:MM'形式)
 
-        $query->whereHas('businessHours', function ($q) use ($currentDay, $currentTime) {
-            $q->where('day_of_week', $currentDay)
-              ->where('start_time', '<=', $currentTime)
-              ->where('end_time', '>', $currentTime);
-        });
+        
+        if (!empty($businessFlg)) {
+            $query->whereHas('businessHours', function ($q) use ($currentDay, $currentTime) {
+                $q->where('day_of_week', $currentDay)
+                ->where('start_time', '<=', $currentTime)
+                ->where('end_time', '>', $currentTime);
+            });
+        }
 
 
         // 6. データを取得し、ビューに渡す
