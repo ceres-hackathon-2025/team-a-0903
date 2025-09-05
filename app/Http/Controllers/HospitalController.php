@@ -7,6 +7,7 @@ use App\Models\Species;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 class HospitalController extends Controller
 {
@@ -50,12 +51,25 @@ class HospitalController extends Controller
         if (!empty($selectedAnimals)) {
             // 'species'というリレーションを持っていて、
             // そのリレーション先のspeciesテーブルのidが、選択されたIDの配列に含まれている病院を検索
-            $hospitals = $query->whereHas('species', function ($q) use ($selectedAnimals) {
+            $query->whereHas('species', function ($q) use ($selectedAnimals) {
                 $q->whereIn('species.id', $selectedAnimals);
-            })->get();
+            });
         }
-        // 5. データを取得し、ビューに渡す
-        // $hospitals = $query->latest()->get();
+
+        // 5.「現在営業中」での絞り込み (ここからが追加部分)
+        $now = Carbon::now('Asia/Tokyo');
+        $currentDay = $now->dayOfWeekIso;      // 現在の曜日を取得 (月曜:1, ..., 日曜:7)
+        $currentTime = $now->format('H:i'); // 現在の時刻を取得 ('HH:MM:SS'形式)
+
+        $query->whereHas('businessHours', function ($q) use ($currentDay, $currentTime) {
+            $q->where('day_of_week', $currentDay)
+              ->where('start_time', '<=', $currentTime)
+              ->where('end_time', '>', $currentTime);
+        });
+
+
+        // 6. データを取得し、ビューに渡す
+        $hospitals = $query->latest()->get();
         $animals = Species::orderBy('id')->get();
         return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'keyword'));
     }
