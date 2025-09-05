@@ -22,7 +22,7 @@ class HospitalSeeder extends Seeder
             'tel' => '03-3499-7117',
             'homepage_url' => 'https://www.sjd.co.jp/hospital/',
             'images' => null, // 画像データがないためnull
-            'googleMap_url' => 'https://maps.app.goo.gl/qZmKBhUHrub9DY3C7',
+            'googleMap_url' => 'https://www.google.com/maps/search/?api=1&query=東京都渋谷区渋谷3丁目10-15',
         ]);
         Hospital::create([
             'id' => 2,
@@ -32,17 +32,17 @@ class HospitalSeeder extends Seeder
             'tel' => '03-6421-0960',
             'homepage_url' => 'https://samc.co.jp/',
             'images' => null,
-            'googleMap_url' => 'https://maps.app.goo.gl/ov2TfHnHDR53vyhu5',
+            'googleMap_url' => 'https://www.google.com/maps/search/?api=1&query=東京都渋谷区渋谷1丁目15-20',
         ]);
         Hospital::create([
             'id' => 3,
             'name' => '渋谷道玄坂ルルペットクリニック',
             'post_code' => '150-0043',
-            'address' => '東京都渋谷区道玄坂2-16-3 高葉屋ビル２F',
+            'address' => '東京都渋谷区道玄坂2-16-3 高葉屋ビル2F',
             'tel' => '03-6416-1872',
             'homepage_url' => 'https://lulu-shibuya.com/',
             'images' => null,
-            'googleMap_url' => 'https://maps.app.goo.gl/VKsqsmbqs1SwQo4T',
+            'googleMap_url' => 'https://www.google.com/maps/search/?api=1&query=東京都渋谷区道玄坂2-16-3 高葉屋ビル2F',
         ]);
         Hospital::create([
             'id' => 4,
@@ -52,7 +52,7 @@ class HospitalSeeder extends Seeder
             'tel' => '03-6555-1600',
             'homepage_url' => 'https://doggys-petcare.jp/',
             'images' => null,
-            'googleMap_url' => 'https://maps.app.goo.gl/VfWREeBqeVKGKVYA',
+            'googleMap_url' => 'https://www.google.com/maps/search/?api=1&query=東京都渋谷区松濤1丁目28-5',
         ]);
         Hospital::create([
             'id' => 5,
@@ -62,7 +62,7 @@ class HospitalSeeder extends Seeder
             'tel' => '03-6712-7299',
             'homepage_url' => 'https://www.halu.vet/',
             'images' => null,
-            'googleMap_url' => 'https://maps.app.goo.gl/ue26aGunztJKKL657',
+            'googleMap_url' => 'https://www.google.com/maps/search/?api=1&query=東京都渋谷区猿楽町3番9号',
         ]);
 
 
