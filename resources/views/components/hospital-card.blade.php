@@ -7,18 +7,29 @@
         
         <ul class="list-unstyled text-muted mt-3 mb-4 flex-grow-1">
             <li class="mb-2">
+                <a href="{{ $hospital->googleMap_url }}">
                 <i class="fas fa-map-marker-alt fa-fw me-2"></i>
                 {{ $hospital->address }}
+                </a>
             </li>
             <li class="mb-2">
                 <i class="fas fa-phone fa-fw me-2"></i>
-                {{ $hospital->phone }}
+                {{ $hospital->tel }}
             </li>
+            @foreach ($hospital->businessHours as $hours)
             <li class="mb-2">
                 <i class="fas fa-clock fa-fw me-2"></i>
-                {{ $hospital->consultation_hours }}
+                {{  }}
             </li>
+            @endforeach
         </ul>
+
+        <div>
+            @foreach($hospital->species as $animal)
+                <span class="badge bg-orange me-1">{{ $animal->name }}</span>
+            @endforeach
+        </div>
+
     </div>
     <div class="card-footer bg-white border-top-0 rounded-bottom-4">
         {{-- 詳細ページへのルートが 'hospitals.show' の場合 --}}

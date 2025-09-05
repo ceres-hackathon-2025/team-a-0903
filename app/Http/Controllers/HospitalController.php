@@ -17,11 +17,13 @@ class HospitalController extends Controller
     public function index(): View
     {
         $selectedAnimals = [];
-        $hospitals = Hospital::all();
         $animals = Species::all();
+        $hospitals = Hospital::with('species', 'businessHours')->get();
+
 
         return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
     }
+   
 
     /**
      * 病院の一覧を表示する
@@ -80,14 +82,23 @@ class HospitalController extends Controller
      */
     public function detail(int $id): View
     {
-        $hospitals = $this->getHospitals();
+        $hospitals = Hospital::with('species', 'businessHours')->get();
         $hospital = $hospitals->firstWhere('id', $id);
 
+        $weeks = (object)[
+            1 => '月曜日',
+            2 => '火曜日',
+            3 => '水曜日',
+            4 => '木曜日',
+            5 => '金曜日',
+            6 => '土曜日',
+            7 => '日曜日',
+        ];
         if (!$hospital) {
             abort(404, '指定された病院は見つかりませんでした。');
         }
 
-        return view('detail', compact('hospital'));
+        return view('detail', compact('hospital', 'weeks'));
     }
 
     /**

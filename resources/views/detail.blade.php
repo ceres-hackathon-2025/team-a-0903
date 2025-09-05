@@ -23,15 +23,27 @@
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-phone text-orange me-2"></i>
-                    <strong>電話番号:</strong> {{ $hospital->phone }}
+                    <strong>電話番号:</strong> {{ $hospital->tel }}
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-clock text-orange me-2"></i>
-                    <strong>診療時間:</strong> {{ $hospital->consultation_hours }}
+                    <strong>診療時間:</strong> 
+                    <li>
+                        月曜日：
+                        @foreach ($hospital->businessHours as $hours)
+                        
+                            @if ($hours->day_of_week == (object)["1"])
+                                {{ $hours->start_time }} ~ {{ $hours->end_time }}
+                            @endif
+                        @endforeach
+                    </li>
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-dog text-orange me-2"></i>
-                    <strong>対応動物:</strong> {{ implode('、', $hospital->supported_animals) }}
+                    <strong>対応動物:</strong> 
+                    @foreach ($hospital->species as $animal)
+                    {{ $animal->name }}
+                    @endforeach
                 </li>
             </ul>
 
