@@ -5,9 +5,10 @@
 @section('content')
     <div class="card shadow-sm h-100 border-0">
         {{-- 画像 --}}
-        <img src="{{ $hospital->image_url }}" 
-             class="card-img-top hospital-card-img" 
-             alt="{{ $hospital->name }}">
+        @foreach($hospital->hospitalImages as $image)
+            <img src="{{ $image->image_path }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
+
+        @endforeach
 
         <div class="card-body">
             {{-- 病院名 --}}
@@ -23,15 +24,38 @@
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-phone text-orange me-2"></i>
-                    <strong>電話番号:</strong> {{ $hospital->phone }}
+                    <strong>電話番号:</strong> {{ $hospital->tel }}
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-clock text-orange me-2"></i>
-                    <strong>診療時間:</strong> {{ $hospital->consultation_hours }}
+                    <strong>診療時間:</strong>
+                    <ul class="list-unstyled mt-2 ms-4">
+                    @for ($i = 0; $i <= 6; $i++)
+                    @php
+                    $flg = 0
+                    @endphp
+                    <li>
+                    {{ $weeks[$i] }}：
+                    @foreach ($hospital->businessHours as $hours)
+                    @if ($hours->day_of_week->value == $i)
+                        @php
+                        $flg = 1
+                        @endphp
+                        {{ $hours->start_time->format('H:i') }} ~ {{ $hours->end_time->format('H:i') }}　
+                        @endif
+                    @endforeach
+                    @if ($flg == 0) 
+                    休業日
+                    @endif
+                    </li>
+                    @endfor
+                </ul>
                 </li>
                 <li class="mb-2">
                     <i class="fas fa-dog text-orange me-2"></i>
-
+                    @foreach($hospital->species as $animal)
+                        {{ $animal->name }} @if (!$loop->last)<span>、</span>@endif
+                    @endforeach
                 </li>
             </ul>
             
