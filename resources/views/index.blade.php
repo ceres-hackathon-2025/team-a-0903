@@ -29,7 +29,7 @@
                 <div class="d-flex flex-wrap gap-2">
                     @foreach($animals as $value)
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="{{ $value->id }}" name="animal[]" value="{{ $value->name }}" {{ in_array($value->id, $selectedAnimals) ? 'checked' : '' }}>
+                        <input class="form-check-input border-width" type="checkbox" id="{{ $value->id }}" name="animal[]" value="{{ $value->name }}" {{ in_array($value->id, $selectedAnimals) ? 'checked' : '' }}>
                         <label class="form-check-label" for="{{ $value->id }}">{{ $value->name }}</label>
                     </div>
                     @endforeach
@@ -61,6 +61,17 @@
 
 @push('styles')
 <style>
+    .form-control {
+        border: 2.5px solid #666; /* 枠線を太めに */
+        box-shadow: none;        /* Bootstrapの影を消す（好みで） */
+    }
+    .form-check-input {
+        width: 1.3em;
+        height: 1.3em;
+        border: 2.5px solid #666; /* ▼ 枠線を太めにする ▼ */
+        margin-top: 0.2em;
+        cursor: pointer;
+    }
     .back-to-top-btn {
         display: none;
         position: fixed;

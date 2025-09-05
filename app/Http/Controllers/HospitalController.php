@@ -16,9 +16,22 @@ class HospitalController extends Controller
     public function index(): View
     {
         $selectedAnimals = [];
-        $hospitals = Hospital::all();
+        //$hospitals = Hospital::all();
         $animals = Species::all();
+        $hospitals = Hospital::with('species', 'businessHours')->get();
+
+        /*
+        foreach($all as $value) {
+            var_dump($value->name);
+            foreach($value->species as $a) {
+                var_dump($a->name);
+            }
+        }
+        die();
+        */
+        //dd($hospitals->find(1)->species()->get());
         //dd($animals_data);
+        //dd($hospitals, $animals_hospital);
 
         return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
     }
@@ -50,14 +63,26 @@ class HospitalController extends Controller
      */
     public function detail(int $id): View
     {
-        $hospitals = $this->getHospitals();
-        $hospital = $hospitals->firstWhere('id', $id);
 
+        $animals = Species::all();
+        $hospitals = Hospital::with('species', 'businessHours')->get();
+        $hospital = $hospitals->firstWhere('id', $id);
+        //dd($hospitals);
+
+        $weeks = (object)[
+            1 => '月曜日',
+            2 => '火曜日',
+            3 => '水曜日',
+            4 => '木曜日',
+            5 => '金曜日',
+            6 => '土曜日',
+            7 => '日曜日',
+        ];
         if (!$hospital) {
             abort(404, '指定された病院は見つかりませんでした。');
         }
 
-        return view('detail', compact('hospital'));
+        return view('detail', compact('hospital', 'weeks'));
     }
 
     /**
