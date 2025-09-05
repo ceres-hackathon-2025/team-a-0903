@@ -26,9 +26,10 @@ class HospitalController extends Controller
             '土曜日',
         ];
 
+
         $selectedAnimals = [];
         $animals = Species::all();
-        $hospitals = Hospital::with('species', 'businessHours')->get();
+        $hospitals = Hospital::with('species', 'businessHours', 'hospitalImages')->get();
 
         $now = Carbon::now('Asia/Tokyo');
         $currentDay = $now->dayOfWeekIso;

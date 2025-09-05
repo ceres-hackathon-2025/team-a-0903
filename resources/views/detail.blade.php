@@ -5,9 +5,10 @@
 @section('content')
     <div class="card shadow-sm h-100 border-0">
         {{-- 画像 --}}
-        <img src="{{ $hospital->images }}" 
-             class="card-img-top hospital-card-img" 
-             alt="{{ $hospital->name }}">
+        @foreach($hospital->hospitalImages as $image)
+            <img src="{{ $image->image_path }}" class="card-img-top hospital-card-img rounded-top" alt="{{ $hospital->name }} の画像">
+
+        @endforeach
 
         <div class="card-body">
             {{-- 病院名 --}}

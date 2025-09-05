@@ -50,8 +50,8 @@
 </head>
 <body>
     <header>
-        <div class="container-fluid py-3">
-            <a href="#" class="h1 text-decoration-none text-dark">
+        <div class="container-fluid py-3" >
+            <a href="{{ route('index') }}" class="h1 text-decoration-none text-dark">
                 <i class="fas fa-paw text-orange me-2"></i><strong>ペットレス急</strong>
             </a>
         </div>
