@@ -43,6 +43,26 @@
         .text-orange {
             color: orange !important;
         }
+        /* ロゴ全体のレスポンシブ対応 */
+.logo-img {
+    max-height: 80px;   /* PCでは高さを80px以内に */
+    width: auto;
+    height: auto;
+}
+
+/* アイコンとロゴで高さを揃える */
+.icon-img,
+.text-logo {
+    max-height: 80px;
+}
+
+/* 画面幅が小さい時は縮小 */
+@media (max-width: 576px) {
+    .logo-img {
+        max-height: 50px; /* スマホでは小さく */
+    }
+}
+
     </style>
     
     {{-- ▼▼▼ この行を追加 ▼▼▼ --}}
@@ -50,14 +70,18 @@
 </head>
 <body>
 <header>
-    <div class="container-fluid py-3 text-center" >
-        <a href="{{ route('index') }}" class="h1 text-decoration-none text-dark">
-            <!-- <i class="fas fa-paw text-orange me-2"></i> -->
-            <img src="{{ asset('images/icon_images/icon.png') }}" alt="ペットレス急 アイコン" style="height: 100px; width:auto;">
-            <img src="{{ asset('images/icon_images/logo.png') }}" alt="ペットレス急 ロゴ" style="height: 120px; width: auto;">
+    <div class="container-fluid py-3 text-center">
+        <a href="{{ route('index') }}" class="h1 text-decoration-none text-dark d-flex align-items-center justify-content-center gap-2 flex-wrap">
+            <img src="{{ asset('images/icon_images/icon.png') }}" 
+                 alt="ペットレス急 アイコン" 
+                 class="logo-img icon-img">
+            <img src="{{ asset('images/icon_images/logo.png') }}" 
+                 alt="ペットレス急 ロゴ" 
+                 class="logo-img text-logo">
         </a>
     </div>
 </header>
+
 
     <main class="py-4">
         <div class="container">
