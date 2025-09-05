@@ -7,6 +7,7 @@ use App\Models\Species;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 class HospitalController extends Controller
 {
@@ -20,45 +21,64 @@ class HospitalController extends Controller
         $animals = Species::all();
         $hospitals = Hospital::with('species', 'businessHours')->get();
 
-        /*
-        foreach($all as $value) {
-            var_dump($value->name);
-            foreach($value->species as $a) {
-                var_dump($a->name);
-            }
-        }
-        die();
-        */
-        //dd($hospitals->find(1)->species()->get());
-        //dd($animals_data);
-        //dd($hospitals, $animals_hospital);
 
         return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
     }
-
-    public function search(Request $request): View
-    {
-        //dd($request);
-        $keyword = $request->query('keyword', '');
-        $selectedAnimals = $request->query('animal', []);
-
-        $hospitals = $this->getHospitals();
-        $animals = $this->getAnimals();
-
-        if ($keyword) {
-            $hospitals = $hospitals->filter(fn($h) => str_contains($h->name, $keyword) || str_contains($h->address, $keyword))->values();
-        }
-
-        if (!empty($selectedAnimals)) {
-            $hospitals = $hospitals->filter(function($h) use ($selectedAnimals) {
-                return count(array_intersect($selectedAnimals, $h->supported_animals)) > 0;
-            })->values();
-        }
-
-        return view('index', compact('hospitals', 'animals', 'selectedAnimals'));
-    }
+   
 
     /**
+     * 病院の一覧を表示する
+     */
+    public function search(Request $request) // Requestオブジェクトを受け取る
+    {
+        // 1. ユーザーが入力したキーワードを取得
+        $keyword = $request->input('keyword');
+
+        // 2. 検索クエリを準備
+        $query = Hospital::query();
+
+        // 3. もしキーワードが入力されていれば、検索条件を追加
+        if (!empty($keyword)) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('name', 'LIKE', "%{$keyword}%")
+                  ->orWhere('address', 'LIKE', "%{$keyword}%")
+                  ->orWhere('post_code', 'LIKE', "%{$keyword}%");
+            });
+        }
+
+        // 4. 動物種での絞り込み（ここが重要！）
+        // Bladeから渡された動物IDを配列として受け取る
+        $selectedAnimals = array_values($request->query('animal', []));
+
+        // 配列が空でない（＝1つ以上チェックされている）場合のみ、絞り込み条件を追加
+        if (!empty($selectedAnimals)) {
+            // 'species'というリレーションを持っていて、
+            // そのリレーション先のspeciesテーブルのidが、選択されたIDの配列に含まれている病院を検索
+            $query->whereHas('species', function ($q) use ($selectedAnimals) {
+                $q->whereIn('species.id', $selectedAnimals);
+            });
+        }
+
+        // 5.「現在営業中」での絞り込み (ここからが追加部分)
+        $now = Carbon::now('Asia/Tokyo');
+        $currentDay = $now->dayOfWeekIso;      // 現在の曜日を取得 (月曜:1, ..., 日曜:7)
+        $currentTime = $now->format('H:i'); // 現在の時刻を取得 ('HH:MM:SS'形式)
+
+        $query->whereHas('businessHours', function ($q) use ($currentDay, $currentTime) {
+            $q->where('day_of_week', $currentDay)
+              ->where('start_time', '<=', $currentTime)
+              ->where('end_time', '>', $currentTime);
+        });
+
+
+        // 6. データを取得し、ビューに渡す
+        $hospitals = $query->latest()->get();
+        $animals = Species::orderBy('id')->get();
+        return view('index', compact('hospitals', 'animals', 'selectedAnimals', 'keyword'));
+    }
+
+
+     /**
      * 動物病院の詳細を表示します。
      */
     public function detail(int $id): View
@@ -67,7 +87,6 @@ class HospitalController extends Controller
         $animals = Species::all();
         $hospitals = Hospital::with('species', 'businessHours')->get();
         $hospital = $hospitals->firstWhere('id', $id);
-        //dd($hospitals);
 
         $weeks = (object)[
             1 => '月曜日',
@@ -118,13 +137,6 @@ class HospitalController extends Controller
                 'supported_animals' => ['犬', '猫', '鳥', 'その他'],
                 'image_url' => 'https://via.placeholder.com/300x200.png?text=Hospital+C',
             ],
-        ]);
-    }
-
-    private function getAnimals(): Collection
-    {
-        return collect([
-            '犬', '猫', 'うさぎ', 'ハムスター', 'フェレット', '鳥類', '両生類', '爬虫類', 'その他'
         ]);
     }
 }

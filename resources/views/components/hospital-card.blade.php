@@ -23,6 +23,7 @@
             </li>
             @endforeach
         </ul>
+<<<<<<< HEAD
 
         <div>
             @foreach($hospital->species as $animal)
@@ -34,6 +35,8 @@
 
         -->
 
+=======
+>>>>>>> 13814c1be23c41dbcdb8b96c22b84a0648370341
     </div>
     <div class="card-footer bg-white border-top-0 rounded-bottom-4">
         {{-- 詳細ページへのルートが 'hospitals.show' の場合 --}}

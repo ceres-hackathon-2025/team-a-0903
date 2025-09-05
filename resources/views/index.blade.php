@@ -29,7 +29,12 @@
                 <div class="d-flex flex-wrap gap-2">
                     @foreach($animals as $value)
                     <div class="form-check">
+<<<<<<< HEAD
                         <input class="form-check-input border-width" type="checkbox" id="{{ $value->id }}" name="animal[]" value="{{ $value->name }}" {{ in_array($value->id, $selectedAnimals) ? 'checked' : '' }}>
+=======
+
+                        <input class="form-check-input" type="checkbox" id="{{ $value->id }}" name="animal[]" value="{{ $value->id }}" {{ in_array($value->id, $selectedAnimals) ? 'checked' : '' }}>
+>>>>>>> 13814c1be23c41dbcdb8b96c22b84a0648370341
                         <label class="form-check-label" for="{{ $value->id }}">{{ $value->name }}</label>
                     </div>
                     @endforeach
