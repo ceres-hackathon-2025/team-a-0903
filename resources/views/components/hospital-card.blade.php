@@ -16,12 +16,11 @@
                 <i class="fas fa-phone fa-fw me-2"></i>
                 {{ $hospital->tel }}
             </li>
-            @foreach ($hospital->businessHours as $hours)
+
             <li class="mb-2">
                 <i class="fas fa-clock fa-fw me-2"></i>
-                {{  }}
             </li>
-            @endforeach
+
         </ul>
 
         <div>
