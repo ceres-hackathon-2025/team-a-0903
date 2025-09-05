@@ -108,6 +108,9 @@
                     {{ $animal->name }} @if (!$loop->last)<span>、</span>@endif
                 @endforeach
             </li>
+            <li>
+                ホームページ：<a href="{{ $hospital->homepage_url }}"  target="_blank">{{ $hospital->homepage_url }}</a>
+            </li>
         </ul>
 
         {{-- 地図表示 --}}
