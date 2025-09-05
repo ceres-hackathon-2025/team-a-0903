@@ -91,8 +91,9 @@ class HospitalController extends Controller
         $now = Carbon::now('Asia/Tokyo');
         $currentDay = $now->dayOfWeekIso;      // 現在の曜日を取得 (月曜:1, ..., 日曜:7)
         $currentTime = $now->format('H:i'); // 現在の時刻を取得 ('HH:MM'形式)
-
+        
         if (!empty($businessFlg)) {
+
             $query->whereHas('businessHours', function ($q) use ($currentDay, $currentTime) {
                 $q->where('day_of_week', $currentDay)
                 ->where('start_time', '<=', $currentTime)
